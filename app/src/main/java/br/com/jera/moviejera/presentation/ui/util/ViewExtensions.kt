@@ -6,9 +6,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 
-fun Fragment.setupToolbar(toolbar: Toolbar?) {
+fun Fragment.setupToolbar(toolbar: Toolbar?, title: String? = null) {
     (activity as? AppCompatActivity)?.setSupportActionBar(toolbar)
-    (activity as? AppCompatActivity)?.title = null
+    (activity as? AppCompatActivity)?.title = title
 }
 
 fun ImageView.loadImage(url: String?) {

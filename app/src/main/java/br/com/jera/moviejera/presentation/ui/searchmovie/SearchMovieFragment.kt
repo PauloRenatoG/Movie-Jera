@@ -27,7 +27,7 @@ class SearchMovieFragment : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentSearchMovieBinding.inflate(inflater, container, false)
-        setupToolbar(binding.includedToolbar.toolbar)
+        setupToolbar(binding.includedToolbar.toolbar, "Buscar")
         setHasOptionsMenu(true)
 
         setupRecycler()
