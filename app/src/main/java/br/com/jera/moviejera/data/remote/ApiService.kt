@@ -12,7 +12,12 @@ interface ApiService {
 
     @GET("search/movie")
     suspend fun searchMovie(
-        @Query("query") textSearch: String,
+        @Query("api_key") key: String? = API_KEY,
+        @Query("query") textSearch: String?,
         @Query("page") page: Int
     ): ApiSearchResponse
+
+    companion object {
+        private const val API_KEY = "cc9a25e9341a8ea1a6d3b6da0ddb63a2"
+    }
 }

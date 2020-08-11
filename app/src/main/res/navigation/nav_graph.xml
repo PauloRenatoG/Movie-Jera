@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/searchMovieFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="br.com.jera.moviejera.presentation.ui.splashscreen.SplashScreenFragment"
         android:label="SplashScreenFragment"
         tools:layout="@layout/fragment_splash_screen" />
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.searchmovie.SearchMovieFragment"
+        android:label="SearchMovieFragment"
+        tools:layout="@layout/fragment_search_movie" />
 </navigation>
