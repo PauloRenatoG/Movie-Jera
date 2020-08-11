@@ -5,13 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.jera.moviejera.databinding.ItemSearchBinding
 import br.com.jera.moviejera.domain.entities.Movie
+import br.com.jera.moviejera.presentation.ui.util.loadImage
 
 class SearchMovieViewHolder(
     private val binding: ItemSearchBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindData(movie: Movie) {
-        binding.textTitle.text = movie.title
+        with(binding) {
+            titleMovie.text = movie.title
+            imagePoster.loadImage(movie.posterPath)
+        }
     }
 
     companion object {
