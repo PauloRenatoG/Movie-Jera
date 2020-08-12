@@ -63,6 +63,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$viewModelVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataVersion"
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
     // Hilt
@@ -78,7 +79,7 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:$roomVersion"
-    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
 
     // Paging

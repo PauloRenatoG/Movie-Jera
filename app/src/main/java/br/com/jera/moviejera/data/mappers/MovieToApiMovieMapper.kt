@@ -5,10 +5,10 @@ import br.com.jera.moviejera.data.util.Mapper
 import br.com.jera.moviejera.domain.entities.Movie
 import javax.inject.Inject
 
-class ApiMovieToMovieMapper @Inject constructor(
+class MovieToApiMovieMapper @Inject constructor(
 
-) : Mapper<ApiMovie, Movie>() {
-    override fun transform(t: ApiMovie) = Movie(
+) : Mapper<Movie, ApiMovie>() {
+    override fun transform(t: Movie) = ApiMovie(
         id = t.id,
         adult = t.adult,
         backdropPath = t.backdropPath,

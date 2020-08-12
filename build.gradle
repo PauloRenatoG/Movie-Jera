@@ -17,6 +17,7 @@ buildscript {
         // LifeCycle
         lifeCycleVersion = '2.2.0'
         viewModelVersion = '2.2.0'
+        liveDataVersion= '2.2.0'
 
         // Retrofit
         retrofitVersion = '2.9.0'
