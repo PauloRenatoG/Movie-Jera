@@ -5,9 +5,11 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import br.com.jera.moviejera.domain.entities.Movie
 
-class SearchMovieAdapter : PagedListAdapter<Movie, SearchMovieViewHolder>(diffCallback) {
+class SearchMovieAdapter(
+    private val callbackClick: (Movie) -> Unit
+) : PagedListAdapter<Movie, SearchMovieViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMovieViewHolder {
-        return SearchMovieViewHolder.inflate(parent)
+        return SearchMovieViewHolder.inflate(parent, callbackClick)
     }
 
     override fun onBindViewHolder(holder: SearchMovieViewHolder, position: Int) {

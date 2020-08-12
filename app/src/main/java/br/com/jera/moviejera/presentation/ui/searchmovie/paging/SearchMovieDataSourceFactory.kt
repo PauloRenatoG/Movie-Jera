@@ -9,9 +9,13 @@ class SearchMovieDataSourceFactory constructor(
     private val searchMovie: SearchMovie,
     private val coroutineScope: CoroutineScope
 ) : DataSource.Factory<Int, Movie>() {
-    var textSearch: String = ""
+    var textSearch: String = INIT_SEARCH
 
     override fun create(): DataSource<Int, Movie> {
         return SearchMovieDataSource(searchMovie, textSearch, coroutineScope)
+    }
+
+    companion object {
+        private const val INIT_SEARCH = "A"
     }
 }

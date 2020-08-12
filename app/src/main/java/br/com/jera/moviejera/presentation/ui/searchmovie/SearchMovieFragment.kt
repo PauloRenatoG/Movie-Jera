@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.jera.moviejera.R
 import br.com.jera.moviejera.databinding.FragmentSearchMovieBinding
+import br.com.jera.moviejera.domain.entities.Movie
 import br.com.jera.moviejera.presentation.ui.util.setupToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +18,7 @@ class SearchMovieFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchMovieBinding
     private lateinit var searchView: SearchView
-    private val searchAdapter = SearchMovieAdapter()
+    private val searchAdapter = SearchMovieAdapter { addFavoriteList(it) }
     private val viewModel: SearchMovieViewModel by viewModels()
 
     override fun onCreateView(
@@ -71,5 +72,9 @@ class SearchMovieFragment : Fragment() {
         viewModel.listMovies.observe(viewLifecycleOwner, Observer {
             searchAdapter.submitList(it)
         })
+    }
+
+    private fun addFavoriteList(movie: Movie) {
+        viewModel.addFavorite(movie)
     }
 }
