@@ -1,4 +1,4 @@
-package br.com.jera.moviejera.presentation.ui.searchmovie
+package br.com.jera.moviejera.presentation.ui.watchlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import br.com.jera.moviejera.databinding.ItemSearchBinding
 import br.com.jera.moviejera.domain.entities.Movie
 import br.com.jera.moviejera.presentation.ui.util.loadImage
 
-class SearchMovieViewHolder(
+class WatchListViewHolder(
     private val binding: ItemSearchBinding,
     private val callbackClick: (Movie) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -17,6 +17,7 @@ class SearchMovieViewHolder(
         with(binding) {
             titleMovie.text = movie.title
             imagePoster.loadImage(movie.posterPath)
+            favoriteButton.setImageResource(R.drawable.ic_favorite)
         }
         setClickListener(movie)
     }
@@ -24,21 +25,15 @@ class SearchMovieViewHolder(
     private fun setClickListener(movie: Movie) {
         with(binding) {
             favoriteButton.setOnClickListener {
-                if (movie.favorite) {
-                    favoriteButton.setImageResource(R.drawable.ic_baseline_favorite)
-                } else {
-                    favoriteButton.setImageResource(R.drawable.ic_favorite)
-                }
                 movie.favorite = !movie.favorite
                 callbackClick.invoke(movie)
             }
         }
-
     }
 
     companion object {
-        fun inflate(parent: ViewGroup, callbackClick: (Movie) -> Unit): SearchMovieViewHolder {
-            return SearchMovieViewHolder(
+        fun inflate(parent: ViewGroup, callbackClick: (Movie) -> Unit): WatchListViewHolder {
+            return WatchListViewHolder(
                 ItemSearchBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,

@@ -1,17 +1,18 @@
 package br.com.jera.moviejera.domain.entities
 
-open class Movie(
-    open val adult: Boolean? = null,
-    open val backdropPath: String? = null,
-    open val id: Int? = null,
-    open val originalLanguage: String? = null,
-    open val originalTitle: String? = null,
-    open val overview: String? = null,
-    open val popularity: Double? = null,
-    open val posterPath: String? = null,
-    open val releaseDate: String? = null,
-    open val title: String? = null,
-    open val video: Boolean? = null,
-    open val voteAverage: Double? = null,
-    open val voteCount: Int? = null
+data class Movie(
+    val adult: Boolean? = null,
+    val backdropPath: String? = null,
+    val id: Int? = null,
+    val originalLanguage: String? = null,
+    val originalTitle: String? = null,
+    val overview: String? = null,
+    val popularity: Double? = null,
+    val posterPath: String? = null,
+    val releaseDate: String? = null,
+    val title: String? = null,
+    val video: Boolean? = null,
+    val voteAverage: Double? = null,
+    val voteCount: Int? = null,
+    var favorite: Boolean = false
 )

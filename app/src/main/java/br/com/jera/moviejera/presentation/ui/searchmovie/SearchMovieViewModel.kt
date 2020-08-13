@@ -1,20 +1,22 @@
 package br.com.jera.moviejera.presentation.ui.searchmovie
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import br.com.jera.moviejera.domain.entities.Movie
 import br.com.jera.moviejera.domain.usecases.SearchMovie
+import br.com.jera.moviejera.domain.usecases.WatchList
 import br.com.jera.moviejera.presentation.ui.searchmovie.paging.SearchMovieDataSourceFactory
+import kotlinx.coroutines.launch
 
 class SearchMovieViewModel @ViewModelInject constructor(
-    private val searchMovie: SearchMovie
+    private val searchMovie: SearchMovie,
+    private val watchList: WatchList
 ) : ViewModel() {
-
-    val textSearch: LiveData<String> get() = _textSearch
-    private val _textSearch: MutableLiveData<String> = MutableLiveData()
 
     val listMovies: LiveData<PagedList<Movie>> get() = _listMovies
     private val _listMovies by lazy { dataSourceFactory.toLiveData(pagedListConfig) }
@@ -43,8 +45,14 @@ class SearchMovieViewModel @ViewModelInject constructor(
         refreshSearch()
     }
 
+    internal fun addFavorite(movie: Movie) {
+        viewModelScope.launch {
+            watchList.execute(movie)
+        }
+    }
+
     private fun refreshSearch() {
-       _listMovies.value?.dataSource?.invalidate()
+        _listMovies.value?.dataSource?.invalidate()
     }
 
     companion object {

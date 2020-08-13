@@ -1,18 +1,18 @@
-package br.com.jera.moviejera.presentation.ui.searchmovie
+package br.com.jera.moviejera.presentation.ui.watchlist
 
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import br.com.jera.moviejera.domain.entities.Movie
 
-class SearchMovieAdapter(
+class WatchListAdapter(
     private val callbackClick: (Movie) -> Unit
-) : PagedListAdapter<Movie, SearchMovieViewHolder>(diffCallback) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMovieViewHolder {
-        return SearchMovieViewHolder.inflate(parent, callbackClick)
+) : ListAdapter<Movie, WatchListViewHolder>(diffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WatchListViewHolder {
+        return WatchListViewHolder.inflate(parent, callbackClick)
     }
 
-    override fun onBindViewHolder(holder: SearchMovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WatchListViewHolder, position: Int) {
         getItem(position)?.let { holder.bindData(it) }
     }
 
