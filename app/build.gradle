@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -71,6 +72,10 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltLifeCycle"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltLifeCycle"
+
+    // Firebase
+    implementation "com.firebaseui:firebase-ui-auth:$firebaseVersion"
+    implementation "com.google.firebase:firebase-analytics:$firebaseSdkVersion"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

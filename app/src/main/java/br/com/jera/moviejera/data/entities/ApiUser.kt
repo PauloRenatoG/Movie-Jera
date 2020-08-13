@@ -1,5 +1,6 @@
 package br.com.jera.moviejera.data.entities
 
+import android.net.Uri
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,5 +13,7 @@ data class ApiUser(
     val email: String? = null,
     val dateOfBirth: String? = null,
     @Embedded
-    val token: TokenTemporary?
+    val photoUrl: Uri? = null,
+    @Embedded
+    val token: TokenTemporary? = null
 )

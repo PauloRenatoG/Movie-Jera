@@ -3,4 +3,7 @@
     <string name="search">search</string>
     <string name="pesquisar">Pesquisar</string>
     <string name="watch_list">Favoritos</string>
+    <string name="login_com_email">Login com email</string>
+    <string name="sign_in_cancelled">Login cancelado!</string>
+    <string name="no_network">Sem conexão com internet!</string>
 </resources>
