@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "684247495878",
+    "firebase_url": "https://movie-jera.firebaseio.com",
+    "project_id": "movie-jera",
+    "storage_bucket": "movie-jera.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684247495878:android:e24627c6fcab0eb41a13c7",
+        "android_client_info": {
+          "package_name": "br.com.jera.moviejera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684247495878-nr5vn9231hia4468sv36mv7qk5lg2c59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC6SdMlPH7MlH0aMGhNMNlTjCMIJtNako"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684247495878-nr5vn9231hia4468sv36mv7qk5lg2c59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

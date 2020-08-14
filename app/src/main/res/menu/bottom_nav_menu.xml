@@ -10,4 +10,9 @@
         android:id="@+id/watchListFragment"
         android:icon="@drawable/ic_favorite"
         android:title="@string/watch_list" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_account"
+        android:title="@string/profile" />
 </menu>

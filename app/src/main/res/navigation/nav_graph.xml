@@ -15,4 +15,9 @@
         android:name="br.com.jera.moviejera.presentation.ui.watchlist.WatchListFragment"
         android:label="WatchListFragment"
         tools:layout="@layout/fragment_watch_list" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
