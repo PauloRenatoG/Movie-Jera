@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import br.com.jera.moviejera.databinding.FragmentProfileBinding
 import br.com.jera.moviejera.presentation.ui.login.LoginActivity
 import br.com.jera.moviejera.presentation.ui.util.loadImageProfile
@@ -21,6 +22,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModels()
+    private val controller by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +68,13 @@ class ProfileFragment : Fragment() {
                         startActivity(intent)
                     }
             }
+        }
+
+        binding.buttonEdit.setOnClickListener {
+            val directions = ProfileFragmentDirections
+                .profileFragmentToEditProfileFragment()
+
+            controller.navigate(directions)
         }
     }
 }

@@ -7,4 +7,6 @@ interface UserProfileRepository {
     suspend fun save(user: User)
 
     suspend fun getUser(email: String?): Flow<User>
+
+    suspend fun update(user: User)
 }

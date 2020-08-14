@@ -1,9 +1,6 @@
 package br.com.jera.moviejera.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import br.com.jera.moviejera.data.entities.ApiUser
 import kotlinx.coroutines.flow.Flow
 
@@ -15,4 +12,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE user.email == :email")
     fun getUser(email: String?): Flow<ApiUser>
+
+    @Update
+    fun update(user: ApiUser?)
 }
