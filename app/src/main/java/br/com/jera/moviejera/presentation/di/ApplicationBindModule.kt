@@ -1,10 +1,10 @@
 package br.com.jera.moviejera.presentation.di
 
-import br.com.jera.moviejera.data.repositories.SaveUserRepositoryImpl
 import br.com.jera.moviejera.data.repositories.SearchMovieRepositoryImpl
+import br.com.jera.moviejera.data.repositories.UserProfileRepositoryImpl
 import br.com.jera.moviejera.data.repositories.WatchListRepositoryImpl
-import br.com.jera.moviejera.domain.repositories.SaveUserRepository
 import br.com.jera.moviejera.domain.repositories.SearchMovieRepository
+import br.com.jera.moviejera.domain.repositories.UserProfileRepository
 import br.com.jera.moviejera.domain.repositories.WatchListRepository
 import dagger.Binds
 import dagger.Module
@@ -22,5 +22,5 @@ interface ApplicationBindModule {
     fun bindsWatchListRepository(repository: WatchListRepositoryImpl): WatchListRepository
 
     @Binds
-    fun bindsSaveUserRepository(repository: SaveUserRepositoryImpl): SaveUserRepository
+    fun bindsUserProfileRepository(repository: UserProfileRepositoryImpl): UserProfileRepository
 }

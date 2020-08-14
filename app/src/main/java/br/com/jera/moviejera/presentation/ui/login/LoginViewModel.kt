@@ -4,12 +4,12 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.jera.moviejera.domain.entities.User
-import br.com.jera.moviejera.domain.usecases.SaveUser
+import br.com.jera.moviejera.domain.usecases.UserProfile
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.launch
 
 class LoginViewModel @ViewModelInject constructor(
-    private val saveUser: SaveUser
+    private val userProfile: UserProfile
 ) : ViewModel() {
 
     internal fun saveUser(currentUser: FirebaseUser) {
@@ -17,9 +17,9 @@ class LoginViewModel @ViewModelInject constructor(
             val user = User(
                 name = currentUser.displayName,
                 email = currentUser.email,
-                photoUrl = currentUser.photoUrl
+                photoUrl = currentUser.photoUrl.toString()
             )
-            saveUser.execute(user)
+            userProfile.execute(user)
         }
     }
 }
