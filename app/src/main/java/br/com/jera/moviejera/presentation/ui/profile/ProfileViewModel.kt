@@ -1,6 +1,8 @@
 package br.com.jera.moviejera.presentation.ui.profile
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.jera.moviejera.domain.entities.User
@@ -16,6 +18,9 @@ class ProfileViewModel @ViewModelInject constructor(
 
     private lateinit var _user: Flow<User>
     val user: Flow<User> get() = _user
+
+    private val _complete: MutableLiveData<Boolean> = MutableLiveData()
+    val complete: LiveData<Boolean> get() = _complete
 
     internal fun getUser(email: String?) {
         viewModelScope.launch {
@@ -34,7 +39,11 @@ class ProfileViewModel @ViewModelInject constructor(
                     dateOfBirth = dateOfBirth,
                     photoUrl = it.photoUrl
                 )
-                userProfile.update(userCopy)
+                runCatching {
+                    userProfile.update(userCopy)
+                }.onSuccess {
+                    _complete.value = true
+                }
             }
         }
     }
