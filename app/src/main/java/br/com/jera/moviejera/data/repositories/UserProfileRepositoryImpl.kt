@@ -32,4 +32,10 @@ class UserProfileRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
             .conflate()
     }
+
+    override suspend fun update(user: User) {
+        withContext(Dispatchers.IO) {
+            userDao.update(user.let(mapperUser::transform))
+        }
+    }
 }

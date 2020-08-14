@@ -10,4 +10,8 @@ class UserProfile @Inject constructor(
     suspend fun execute(user: User) = repository.save(user)
 
     suspend fun getUser(email: String?) = repository.getUser(email)
+
+    suspend fun update(user: User) {
+        repository.update(user)
+    }
 }
