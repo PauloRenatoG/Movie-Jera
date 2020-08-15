@@ -10,21 +10,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import br.com.jera.moviejera.R
 import br.com.jera.moviejera.databinding.ActivityLoginBinding
+import br.com.jera.moviejera.presentation.MovieDBApplication
 import br.com.jera.moviejera.presentation.ui.MainActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var currentUser: FirebaseUser
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
+    private val movieDbApp by lazy { application as MovieDBApplication }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +43,9 @@ class LoginActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
-                currentUser = FirebaseAuth.getInstance().currentUser!!
-                viewModel.saveUser(currentUser)
+                movieDbApp.currentUser = FirebaseAuth.getInstance().currentUser!!
+                viewModel.saveUser(movieDbApp.currentUser)
+
                 openMainActivity()
             } else {
                 if (response == null) {

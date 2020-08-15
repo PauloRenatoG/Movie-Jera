@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import br.com.jera.moviejera.databinding.FragmentProfileBinding
+import br.com.jera.moviejera.presentation.MovieDBApplication
 import br.com.jera.moviejera.presentation.ui.login.LoginActivity
 import br.com.jera.moviejera.presentation.ui.util.loadImageProfile
 import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,6 +23,7 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModels()
     private val controller by lazy { findNavController() }
+    private val movieDbApp by lazy { activity?.application as MovieDBApplication }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +33,7 @@ class ProfileFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        getFirebaseUser()
+        viewModel.getUser(movieDbApp.currentUser?.email)
         subscribeUi()
         setupBinding()
         return binding.root
@@ -48,13 +49,6 @@ class ProfileFragment : Fragment() {
                     imageProfile.loadImageProfile(it.photoUrl)
                 }
             }
-        }
-    }
-
-    private fun getFirebaseUser() {
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null) {
-            viewModel.getUser(auth.currentUser!!.email)
         }
     }
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -26,8 +26,8 @@ class WatchListRepositoryImpl @Inject constructor(
     }
 
     @ExperimentalCoroutinesApi
-    override suspend fun getWatchList(): Flow<List<Movie>?> {
-        return movieDao.getWatchList().map {
+    override suspend fun getWatchList(userId: Int?): Flow<List<Movie>?> {
+        return movieDao.getWatchList(userId).mapLatest {
             it.let(mapperToMovie::transformList)
         }.flowOn(Dispatchers.IO)
             .conflate()

@@ -3,21 +3,25 @@ package br.com.jera.moviejera.presentation.ui.watchlist
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import br.com.jera.moviejera.domain.entities.Movie
+import br.com.jera.moviejera.domain.usecases.UserProfile
 import br.com.jera.moviejera.domain.usecases.WatchList
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class WatchListViewModel @ViewModelInject constructor(
-    private val watchList: WatchList
+    private val watchList: WatchList,
+    private val userProfile: UserProfile
 ) : ViewModel(), LifecycleObserver {
 
-    private lateinit var _watchListMovie: Flow<List<Movie>?>
-    val watchListMovie: Flow<List<Movie>?> get() = _watchListMovie
+    private var _watchListMovie: MutableLiveData<List<Movie>> = MutableLiveData()
+    val watchListMovie: LiveData<List<Movie>> get() = _watchListMovie
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun onCreate() {
+    @InternalCoroutinesApi
+    internal fun getUser(email: String?) {
         viewModelScope.launch {
-            _watchListMovie = watchList.getWatchList()
+            val user = userProfile.getUser(email).first()
+            _watchListMovie.value = watchList.getWatchList(user.id).first()
         }
     }
 

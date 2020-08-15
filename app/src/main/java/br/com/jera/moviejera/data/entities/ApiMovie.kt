@@ -34,5 +34,6 @@ data class ApiMovie(
     val voteAverage: Double? = null,
     @SerializedName("vote_count")
     val voteCount: Int? = null,
-    var favorite: Boolean = false
+    var favorite: Boolean = false,
+    val userId: Int? = null
 )
