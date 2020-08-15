@@ -7,7 +7,7 @@ interface WatchListRepository {
 
     suspend fun insert(movie: Movie)
 
-    suspend fun getWatchList(): Flow<List<Movie>?>
+    suspend fun getWatchList(userId: Int?): Flow<List<Movie>?>
 
     suspend fun remove(movie: Movie)
 }

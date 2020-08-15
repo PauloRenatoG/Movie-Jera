@@ -22,6 +22,7 @@ class ApiMovieToMovieMapper @Inject constructor(
         video = t.video,
         voteAverage = t.voteAverage,
         voteCount = t.voteCount,
-        favorite = t.favorite
+        favorite = t.favorite,
+        userId = t.userId
     )
 }

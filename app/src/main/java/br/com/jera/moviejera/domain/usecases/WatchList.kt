@@ -9,7 +9,7 @@ class WatchList @Inject constructor(
 ) {
     suspend fun execute(movie: Movie) = repository.insert(movie)
 
-    suspend fun getWatchList() = repository.getWatchList()
+    suspend fun getWatchList(userId: Int?) = repository.getWatchList(userId)
 
     suspend fun remove(movie: Movie) = repository.remove(movie)
 }

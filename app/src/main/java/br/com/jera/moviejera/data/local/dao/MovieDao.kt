@@ -10,8 +10,8 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(movie: ApiMovie)
 
-    @Query("SELECT * FROM apimovie")
-    fun getWatchList(): Flow<List<ApiMovie>>
+    @Query("SELECT * FROM apimovie WHERE apimovie.userId == :userId")
+    fun getWatchList(userId: Int?): Flow<List<ApiMovie>>
 
     @Delete
     suspend fun remove(movie: ApiMovie)
