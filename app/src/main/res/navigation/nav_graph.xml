@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchMovieFragment">
+
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.searchmovie.SearchMovieFragment"
+        android:label="SearchMovieFragment"
+        tools:layout="@layout/fragment_search_movie" />
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.watchlist.WatchListFragment"
+        android:label="WatchListFragment"
+        tools:layout="@layout/fragment_watch_list" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="br.com.jera.moviejera.presentation.ui.profile.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
