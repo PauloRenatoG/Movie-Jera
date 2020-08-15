@@ -12,12 +12,12 @@ class LoginViewModel @ViewModelInject constructor(
     private val userProfile: UserProfile
 ) : ViewModel() {
 
-    internal fun saveUser(currentUser: FirebaseUser) {
+    internal fun saveUser(currentUser: FirebaseUser?) {
         viewModelScope.launch {
             val user = User(
-                name = currentUser.displayName,
-                email = currentUser.email,
-                photoUrl = currentUser.photoUrl.toString()
+                name = currentUser?.displayName,
+                email = currentUser?.email,
+                photoUrl = currentUser?.photoUrl.toString()
             )
             userProfile.execute(user)
         }

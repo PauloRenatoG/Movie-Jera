@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import br.com.jera.moviejera.databinding.FragmentEditProfileBinding
+import br.com.jera.moviejera.presentation.MovieDBApplication
 import br.com.jera.moviejera.presentation.ui.util.loadImageProfile
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -27,6 +27,7 @@ class EditProfileFragment : Fragment() {
     private var datePickerDialog: DatePickerDialog? = null
     private val calendar = Calendar.getInstance()
     private val controller by lazy { findNavController() }
+    private val movieDbApp by lazy { activity?.application as MovieDBApplication }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +37,7 @@ class EditProfileFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
 
-        getFirebaseUser()
+        viewModel.getUser(movieDbApp.currentUser?.email)
         subscribeUi()
         setupBinding()
         return binding.root
@@ -56,13 +57,6 @@ class EditProfileFragment : Fragment() {
         viewModel.complete.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             onCompleteSave(it)
         })
-    }
-
-    private fun getFirebaseUser() {
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null) {
-            viewModel.getUser(auth.currentUser!!.email)
-        }
     }
 
     private fun setupBinding() {
